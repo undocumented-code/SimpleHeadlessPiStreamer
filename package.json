@@ -1,0 +1,23 @@
+{
+  "name": "simple-headless-pi-streamer",
+  "version": "1.0.0",
+  "description": "Headless Raspberry Pi streaming to Youtube (see https://blog.tuckerosman.com/2019/02/headless-raspberry-pi-stream-youtube.html for setup info)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undocumented-code/SimpleHeadlessPiStreamer.git"
+  },
+  "author": "Tucker Osman",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/undocumented-code/SimpleHeadlessPiStreamer/issues"
+  },
+  "homepage": "https://github.com/undocumented-code/SimpleHeadlessPiStreamer#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "shelljs": "^0.8.3"
+  }
+}

@@ -1,0 +1,47 @@
+<html>
+<head>
+	<title>Live Stream To Youtube</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script>
+	$(document).ready(() => {
+		$.get('/api/status', (data) => {
+			$('#streamkey').val(data.key);
+			if(data.status === 'started') $('#submit').addClass('stop').removeClass('start').text('Stop Streaming');
+			if(data.status === 'stopped') $('#submit').addClass('start').removeClass('stop').text('Start Streaming');
+		});
+
+		$('#submit').click(() => {
+			if($('#submit').hasClass('start')) {
+				$.get(`/api/start?key=${$('#streamkey').val()}`, (data) => {
+					if(data.action === 'failed') alert('There was an error.');
+					$('#streamkey').val(data.key);
+					if(data.status === 'started') $('#submit').addClass('stop').removeClass('start').text('Stop Streaming');
+					if(data.status === 'stopped') $('#submit').addClass('start').removeClass('stop').text('Start Streaming');
+				});
+			};
+
+			if($('#submit').hasClass('stop')) {
+				$.get('/api/stop', (data) => {
+					if(data.action === 'failed') alert('There was an error.');
+					$('#streamkey').val(data.key);
+					if(data.status === 'started') $('#submit').addClass('stop').removeClass('start').text('Stop Streaming');
+					if(data.status === 'stopped') $('#submit').addClass('start').removeClass('stop').text('Start Streaming');
+				});
+			};
+		});
+	});
+	</script>
+	<style>
+		.start {
+			background-color: lime;
+		}
+		.stop {
+			background-color: red;
+		}
+	</style>
+</head>
+<body>
+	<h1>Live Stream To Youtube</h1>
+	<input id="streamkey" /> <button id="submit" class="start">Start Streaming</button>
+</body>
+</html>
